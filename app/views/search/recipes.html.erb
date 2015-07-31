@@ -1,0 +1,8 @@
+<h3> Recipes for: <%= params[:keywords] %> </h3>
+<% if @recipes.empty?%>
+  <h4>No results<h4>
+<% else %>
+  <%= render partial: 'layouts/recipes' %>
+<% end %>
+
+<%= paginate @recipes %>

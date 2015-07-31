@@ -5,6 +5,11 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
 
+  Capybara.javascript_driver = :chrome
+  Capybara.default_wait_time = 5
   # Add more helper methods to be used by all tests here...
 end

@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<% if current_user%>
+  <%= link_to toggle_xhr(@recipe), toggle_recipe_favorite_index_path(@recipe), method: 'post', remote: true, id: 'favorite_link' %>
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @recipe.name %>
@@ -9,10 +11,9 @@
   <strong>Time:</strong>
   <%= @recipe.time %>
 </p>
-
 <p>
   <strong>Ingredients:</strong>
-  <%= @recipe.ingredients %>
+    <%= raw ingredients_format %>
 </p>
 
 <p>
@@ -20,5 +21,6 @@
   <%= @recipe.description %>
 </p>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+<p>
+  <%= image_tag  @recipe.image_url %>
+</p>

@@ -1,31 +1,13 @@
-<h1>Listing recipes</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Time</th>
-      <th>Ingredients</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @recipes.each do |recipe| %>
-      <tr>
-        <td><%= recipe.name %></td>
-        <td><%= recipe.time %></td>
-        <td><%= recipe.ingredients %></td>
-        <td><%= recipe.description %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Recipe', new_recipe_path %>
+<h1 class="title-func">Cookbook</h1>
+<%= form_tag recipes_search_index_path, method: 'get', html: {role: 'search', class: 'Search'} do %>
+  <input id="keywords" name="keywords" type="search" class="Search-input" placeholder="search here" value="<%= params[:keywords] %>">
+  <button class="Search-btn" value="Search">
+    <i class="Icon Icon--magnifier Icon--xxlg u-mt10" aria-hidden="true">
+      <span class="u-textHide">Go</span>
+    </i>
+  </button>
+<% end %>
+<%= render partial: 'layouts/recipes' %>
+<%= link_to 'New Recipe', new_recipe_path if current_user && current_user.admin?%>
+<%= link_to 'Favorites', recipes_user_favorite_index_path(current_user), remote: true if current_user %>
+<%= paginate @recipes %>

@@ -1,13 +1,36 @@
 Rails.application.routes.draw do
-  resources :recipes
+  devise_for :users
+
+  resources :users do
+    resources :favorite, only: [] do
+      collection do
+        get :recipes
+      end
+    end
+  end
+
+  resources :recipes do
+    resources :favorite, only: [] do
+      collection do
+        post :toggle
+      end
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'recipes#index'
 
-  # Example of regular route:
+  resources :search, only: [] do
+    collection do
+      get :recipes
+    end
+  end
+
+
+# Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

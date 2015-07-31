@@ -20,12 +20,23 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
+# gem that handles pagination
+gem 'kaminari'
+gem 'pg'
+gem 'pg_search'
+gem 'devise'
 
+group :development, :test do
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-gem 'pry-rails',     group: :development
-gem 'pry-rescue'
-gem 'pry-byebug'
+  gem 'spring'
+  gem 'pry-rails'
+  gem 'rspec-rails',      ">= 2.0.0.beta"
+  gem 'capybara'
+  gem 'launchy'
+  gem 'pry-rescue'
+  gem 'pry-byebug'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,12 +48,3 @@ gem 'pry-byebug'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-# Use sqlite3 as the database for Active Record
-group :development, :test do
-  gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
-end
-

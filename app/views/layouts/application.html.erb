@@ -7,7 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render partial: 'search/search_navigation' %>
+<%= link_to 'Log in', new_user_session_path unless user_signed_in? %>
+<%= link_to 'Sign up', new_user_registration_path unless user_signed_in?%>
+<% if user_signed_in? %>
+  <div><%= current_user.email %>
+  <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+</div>
+<% end %>
 <%= yield %>
 
 </body>
