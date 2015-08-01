@@ -40,6 +40,11 @@ describe "Recipes" do
       expect(list.size).to eq 5
     end
 
+    it "shows a message when no recipe is available"do
+      visit recipes_path
+      page.should have_content("Sorry we currently have no recipes for you")
+    end
+
     it "lists max ten recipes per page" do
       11.times do
         Recipe.create(name: "Parmigiana")
@@ -100,6 +105,7 @@ describe "Recipes" do
     end
 
     # I had some problems in configuring capybara with ajax. So I can't test end to end this feature
+    # describe 'bla',
     it "stars a favorite" do
       user = User.create(email: "what@ever.com")
       login_as(user, :scope => :user)
@@ -108,7 +114,9 @@ describe "Recipes" do
       page.should have_content("Favorite")
       fav = Favorite.create(user_id: user.id, recipe_id: recipe.id )
       visit recipe_path recipe.id
-      # page.should have_content("Unfavorite")
+      Capybara.using_wait_time 30 do
+        page.should have_content("Unfavorite")
+      end
     end
   end
 end

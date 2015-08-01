@@ -26,6 +26,7 @@ gem 'pg'
 gem 'pg_search'
 gem 'devise'
 gem 'rails_12factor'
+gem 'gaffe'
 
 group :development, :test do
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -33,6 +34,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails',      ">= 2.0.0.beta"
   gem 'capybara'
+  gem 'poltergeist'
   gem 'launchy'
   gem 'pry-rescue'
   gem 'pry-byebug'

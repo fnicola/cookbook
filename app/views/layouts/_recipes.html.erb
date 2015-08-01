@@ -1,3 +1,11 @@
+<% if @recipes.empty? %>
+  <% if controller_name == 'favorite' %>
+    <h3>Sorry you don't currently have any favorited recipes</h3>
+  <% else %>
+    <h3>Sorry we currently have no recipes for you</h3>
+  <% end %>
+
+<% else %>
 <table border="1" style="width:50%" class ="recipe-index">
   <thead>
     <tr>
@@ -23,3 +31,4 @@
     <% end %>
   </tbody>
 </table>
+<% end  %>
