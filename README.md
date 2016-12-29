@@ -1,4 +1,4 @@
-# Cookbook
+# Cookbook test
 
 Cookbook is a small webapp written in Ruby on Rails. A few features are available so far:
 
